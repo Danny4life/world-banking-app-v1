@@ -18,14 +18,13 @@ public class JwtTokenProvider {
     private String jwtSecret;
 
     @Value("${app.jwt-expiration}")
-    private String jwtExpirationTime;
+    private Long jwtExpirationDate;
 
     // Method to generate token
     public String generateToken(Authentication authentication){
         String username = authentication.getName();
         Date currentDate = new Date();
-        Date expirationDate = new Date(currentDate.getTime() + jwtExpirationTime);
-
+        Date expirationDate = new Date(currentDate.getTime() + jwtExpirationDate);
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(currentDate)
@@ -40,6 +39,8 @@ public class JwtTokenProvider {
         byte[] bytes = Decoders.BASE64.decode(jwtSecret);
 
         return Keys.hmacShaKeyFor(bytes);
+
+
     }
 
     // This method help us get the name associated with the token

@@ -1,13 +1,18 @@
 package com.osiki.World_Banking_Application.infrastructure.controller;
 
+import com.osiki.World_Banking_Application.payload.request.LoginRequest;
 import com.osiki.World_Banking_Application.payload.request.UserRequest;
+import com.osiki.World_Banking_Application.payload.response.APIResponse;
 import com.osiki.World_Banking_Application.payload.response.BankResponse;
+import com.osiki.World_Banking_Application.payload.response.JwtAuthResponse;
 import com.osiki.World_Banking_Application.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.service.annotation.PostExchange;
 
 @RestController
 @RequestMapping("/api/v1/auth/")
@@ -19,6 +24,13 @@ public class AuthController {
     @PostMapping("register")
     public BankResponse<?> createAccount(@RequestBody UserRequest userRequest){
         return authService.registerUser(userRequest);
+
+    }
+
+    @PostMapping("login")
+    public ResponseEntity<APIResponse<JwtAuthResponse>> login(@RequestBody LoginRequest loginRequest){
+
+        return authService.login(loginRequest);
 
     }
 }

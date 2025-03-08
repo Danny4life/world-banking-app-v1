@@ -4,4 +4,7 @@ import com.osiki.World_Banking_Application.payload.request.EmailDetails;
 
 public interface EmailService {
     void sendEmailAlert(EmailDetails emailDetails);
+
+
+    void sendSimpleEmail(String to, String subject, String message);
 }
