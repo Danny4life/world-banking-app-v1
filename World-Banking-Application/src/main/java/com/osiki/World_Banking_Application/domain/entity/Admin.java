@@ -1,6 +1,5 @@
 package com.osiki.World_Banking_Application.domain.entity;
 
-
 import com.osiki.World_Banking_Application.domain.enums.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,42 +10,27 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 @Entity
-@Table(name = "users_tbl")
-public class UserEntity extends BaseClass implements UserDetails {
+@Table(name = "admins")
+@Builder
+public class Admin extends BaseClass implements UserDetails {
 
     private String firstName;
 
     private String lastName;
 
-    private String otherName;
-
-    private String gender;
-
-    private String address;
-
-    private String accountNumber;
-
-    private BigDecimal accountBalance;
-
-    private String phoneNumber;
-
-    private String profilePicture;
-
     private String email;
 
     private String password;
 
-    private String accountStatus;
+    private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -67,22 +51,12 @@ public class UserEntity extends BaseClass implements UserDetails {
     }
 
     @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
     public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
+        return UserDetails.super.isAccountNonLocked();
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return UserDetails.super.isEnabled();
     }
 }

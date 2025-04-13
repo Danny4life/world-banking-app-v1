@@ -7,4 +7,6 @@ public interface EmailService {
 
 
     void sendSimpleEmail(String to, String subject, String message);
+
+    void sendEmailWithAttachment(EmailDetails emailDetails);
 }

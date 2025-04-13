@@ -1,6 +1,8 @@
 package com.osiki.World_Banking_Application.service;
 
+import com.osiki.World_Banking_Application.domain.entity.Admin;
 import com.osiki.World_Banking_Application.domain.entity.UserEntity;
+import com.osiki.World_Banking_Application.repository.AdminRepository;
 import com.osiki.World_Banking_Application.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +17,8 @@ import java.util.Optional;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
+
+    private final AdminRepository adminRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -23,7 +27,17 @@ public class CustomUserDetailsService implements UserDetailsService {
                 : userRepository.findByPhoneNumber(normalizedPhoneNumber(username));
 
 
-        return userEntityOptional.get();
+       // return userEntityOptional.get();
+
+        Optional<Admin> adminOptional = isEmail(username)
+                ? adminRepository.findByEmail(username)
+                : adminRepository.findByPhoneNumber(normalizedPhoneNumber(username));
+
+        if(userEntityOptional.isPresent()){
+            return userEntityOptional.get();
+        }else {
+            return adminOptional.get();
+        }
     }
 
     private String normalizedPhoneNumber(String phoneNumber) {

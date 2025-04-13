@@ -1,8 +1,10 @@
 package com.osiki.World_Banking_Application.infrastructure.controller;
 
+import com.osiki.World_Banking_Application.payload.request.AdminRequest;
 import com.osiki.World_Banking_Application.payload.request.LoginRequest;
 import com.osiki.World_Banking_Application.payload.request.UserRequest;
 import com.osiki.World_Banking_Application.payload.response.APIResponse;
+import com.osiki.World_Banking_Application.payload.response.AdminSignupResponse;
 import com.osiki.World_Banking_Application.payload.response.BankResponse;
 import com.osiki.World_Banking_Application.payload.response.JwtAuthResponse;
 import com.osiki.World_Banking_Application.service.AuthService;
@@ -24,6 +26,12 @@ public class AuthController {
     @PostMapping("register")
     public BankResponse<?> createAccount(@RequestBody UserRequest userRequest){
         return authService.registerUser(userRequest);
+
+    }
+
+    @PostMapping("admin/register")
+    public ResponseEntity<APIResponse<AdminSignupResponse>> registerAdmin(@RequestBody AdminRequest adminRequest){
+        return authService.registerAdmin(adminRequest);
 
     }
 

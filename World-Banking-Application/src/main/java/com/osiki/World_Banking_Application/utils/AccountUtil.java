@@ -12,6 +12,30 @@ public class AccountUtil {
     public static final String ACCOUNT_CREATION_SUCCESS_MESSAGE = "Account has been created successfully!";
 
 
+    public static final String ACCOUNT_NUMBER_NON_EXISTS_CODE = "003";
+    public static final String ACCOUNT_NUMBER_NON_EXISTS_MESSAGE = "Provided account number does not exists.";
+
+    public static final String ACCOUNT_NUMBER_FOUND_CODE = "004";
+    public static final String ACCOUNT_NUMBER_FOUND_MESSAGE = "Account number found";
+
+    public static final String ACCOUNT_CREDITED_SUCCESS_CODE = "005";
+    public static final String ACCOUNT_CREDITED_SUCCESS_MESSAGE = "Account credited successfully";
+
+    public static final String ACCOUNT_BALANCE_CODE = "006";
+
+    public static final String ACCOUNT_BALANCE_MESSAGE = "Insufficient Balance";
+
+    public static final String ACCOUNT_DEBITED_SUCCESS_CODE = "007";
+
+    public static final String ACCOUNT_DEBITED_SUCCESS_MESSAGE = "Account has been debited successfully";
+
+    public static final String TRANSFER_SUCCESSFUL_CODE = "008";
+
+    public static final String TRANSFER_SUCCESSFUL_MESSAGE = "Transfer successful";
+
+
+
+
 
 
 

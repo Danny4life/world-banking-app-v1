@@ -1,5 +1,6 @@
 package com.osiki.World_Banking_Application.payload.response;
 
+import com.osiki.World_Banking_Application.domain.entity.ErrorDetails;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,5 +24,11 @@ public class BankResponse<T>{
         this.responseCode = responseCode;
         this.responseMessage = responseMessage;
         this.accountInfo = accountInfo;
+    }
+
+    public BankResponse(String uploadedSuccessfully, String fileUrl) {
+    }
+
+    public BankResponse(String message, ErrorDetails errorDetails) {
     }
 }
